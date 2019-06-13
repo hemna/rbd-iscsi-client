@@ -1,5 +1,8 @@
 CHANGES
 =======
 
+* remove manifest
+* Fix pep8
+* renamed rbd\_iscsi\_client to client
 * Added basic unit tests
 * Initial commit

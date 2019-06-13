@@ -9,7 +9,6 @@ Welcome to RBD iSCSI Client's documentation!
    installation
    usage
    contributing
-   authors
    history
 
 Indices and tables
