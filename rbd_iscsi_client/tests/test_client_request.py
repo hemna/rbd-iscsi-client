@@ -23,17 +23,18 @@ class TestRbd_iscsi_client(unittest.TestCase):
     """Tests for `rbd_iscsi_client` package."""
 
     client = None
+    FAKE_URL = 'client://fake-url:0000'
+    FAKE_USER = 'user'
+    FAKE_PASSWORD = 'password'
 
     def setUp(self):
-        fake_url = 'client://fake-url:0000'
-        fake_user = 'user'
-        fake_password = 'password'
-        self.client = client.RBDISCSIClient(fake_user, fake_password,
-                                            fake_url, secure=False,
+        self.client = client.RBDISCSIClient(self.FAKE_USER,
+                                            self.FAKE_PASSWORD,
+                                            self.FAKE_URL,
+                                            secure=False,
                                             http_log_debug=True,
                                             suppress_ssl_warnings=False,
-                                            timeout=None,
-                                            )
+                                            timeout=None)
 
     def tearDown(self):
         self.client = None
@@ -125,17 +126,3 @@ class TestRbd_iscsi_client(unittest.TestCase):
 
         with mock.patch('requests.request', retest, create=True):
             self.assertEqual(self.client.timeout, 10)
-
-    def test_client_retry(self):
-        self.client._http_log_req = mock.Mock()
-        self.client.timeout = 2
-        retest = mock.Mock()
-        http_method = 'fake this'
-        http_url = 'http://fake-url:0000'
-
-        with mock.patch('requests.request', retest, create=True):
-            # Test retry exception
-            retest.side_effect = requests.exceptions.ConnectionError
-            self.assertRaises(requests.exceptions.ConnectionError,
-                              self.client.request,
-                              http_url, http_method)
