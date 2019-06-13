@@ -26,10 +26,9 @@ import time
 
 from rbd_iscsi_client import exceptions
 
-from requests.auth import HTTPBasicAuth
-
 
 class RBDISCSIClient(object):
+    """REST client to rbd-target-api."""
 
     USER_AGENT = "os_client"
 
@@ -42,6 +41,7 @@ class RBDISCSIClient(object):
     tries = 5
     delay = 0
     backoff = 2
+    timeout = 60
 
     _logger = logging.getLogger(__name__)
     retry_exceptions = (exceptions.HTTPServiceUnavailable,
@@ -49,7 +49,7 @@ class RBDISCSIClient(object):
 
     def __init__(self, username, password, base_url,
                  suppress_ssl_warnings=False, timeout=None,
-                 secure=False):
+                 secure=False, http_log_debug=False):
         super(RBDISCSIClient, self).__init__()
 
         self.username = username
@@ -59,11 +59,12 @@ class RBDISCSIClient(object):
         self.secure = secure
 
         self.times = []
+        self.set_debug_flag(http_log_debug)
 
         if suppress_ssl_warnings:
             requests.packages.urllib3.disable_warnings()
 
-        self.auth = HTTPBasicAuth(username, password)
+        self.auth = requests.auth.HTTPBasicAuth(username, password)
 
     def set_debug_flag(self, flag):
         """Turn on/off http request/response debugging."""
@@ -194,7 +195,18 @@ class RBDISCSIClient(object):
                 # Raise exception, we have exhausted all retries.
                 if self.tries is 0:
                     raise ex
-
+            except requests.exceptions.HTTPError as err:
+                raise exceptions.HTTPError("HTTP Error: %s" % err)
+            except requests.exceptions.URLRequired as err:
+                raise exceptions.URLRequired("URL Required: %s" % err)
+            except requests.exceptions.TooManyRedirects as err:
+                raise exceptions.TooManyRedirects(
+                    "Too Many Redirects: %s" % err)
+            except requests.exceptions.Timeout as err:
+                raise exceptions.Timeout("Timeout: %s" % err)
+            except requests.exceptions.RequestException as err:
+                raise exceptions.RequestException(
+                    "Request Exception: %s" % err)
         return resp, body
 
     def _time_request(self, url, method, **kwargs):
