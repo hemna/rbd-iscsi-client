@@ -1,8 +1,15 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
 """Tests for `rbd_iscsi_client` package."""
-
 
 import unittest
 
@@ -25,7 +32,7 @@ class Test_exceptions(unittest.TestCase):
 
         fake_response = FakeResponse()
         output = exceptions.from_response(fake_response, {}).__str__()
-        self.assertEquals('Internal Server Error (HTTP 500)', output)
+        self.assertEqual('Internal Server Error (HTTP 500)', output)
 
     def test_001_client_exception_string_format(self):
         fake_error = {'code': 999,
@@ -38,6 +45,6 @@ class Test_exceptions(unittest.TestCase):
         client_ex.http_status = 500
         output = client_ex.__str__()
 
-        self.assertEquals("Fake Error (HTTP 500) 999 - Fake Description - "
-                          "Fake Ref (1: 'Fake Debug 1') (2: 'Fake Debug 2')",
-                          output)
+        self.assertEqual("Fake Error (HTTP 500) 999 - Fake Description - "
+                         "Fake Ref (1: 'Fake Debug 1') (2: 'Fake Debug 2')",
+                         output)

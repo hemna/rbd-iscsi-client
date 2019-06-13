@@ -8,7 +8,7 @@
 # distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
-# under the License."""
+# under the License.
 """
 Exceptions for the client
 
@@ -30,9 +30,7 @@ LOG = logging.getLogger(__name__)
 
 
 class UnsupportedVersion(Exception):
-    """
-    Indicates that the user is trying to use an unsupported version of the API
-    """
+    """unsupported version of the API."""
     pass
 
 
@@ -49,8 +47,7 @@ class NoUniqueMatch(Exception):
 
 
 class ClientException(Exception):
-    """
-    The base exception class for all exceptions this library raises.
+    """The base exception class for all exceptions this library raises.
 
     :param error: The error array
     :type error: array
@@ -117,9 +114,7 @@ class ClientException(Exception):
 
 
 class SSLCertFailed(ClientException):
-    """
-    The SSL certificate from the server could not be verified
-    """
+    """The SSL certificate from the server could not be verified."""
     http_status = ""
     message = "SSL Certificate Verification Failed"
 
@@ -128,44 +123,32 @@ class SSLCertFailed(ClientException):
 
 
 class RequestException(ClientException):
-    """
-    There was an ambiguous exception that occurred in Requests
-    """
+    """There was an ambiguous exception that occurred in Requests."""
     pass
 
 
 class ConnectionError(ClientException):
-    """
-    There was an error connecting to the server
-    """
+    """There was an error connecting to the server."""
     pass
 
 
 class HTTPError(ClientException):
-    """
-    An HTTP error occurred
-    """
+    """An HTTP error occurred."""
     pass
 
 
 class URLRequired(ClientException):
-    """
-    A valid URL is required to make a request
-    """
+    """A valid URL is required to make a request."""
     pass
 
 
 class TooManyRedirects(ClientException):
-    """
-    Too many redirects
-    """
+    """Too many redirects."""
     pass
 
 
 class Timeout(ClientException):
-    """
-    The request timed out
-    """
+    """The request timed out."""
     pass
 
 
@@ -173,99 +156,84 @@ class Timeout(ClientException):
 
 
 class HTTPBadRequest(ClientException):
-    """
-    HTTP 400 - Bad request: you sent some malformed data.
-    """
+    """HTTP 400 - Bad request: you sent some malformed data."""
     http_status = 400
     message = "Bad request"
 
 
 class HTTPUnauthorized(ClientException):
-    """
-    HTTP 401 - Unauthorized: bad credentials.
-    """
+    """HTTP 401 - Unauthorized: bad credentials."""
     http_status = 401
     message = "Unauthorized"
 
 
 class HTTPForbidden(ClientException):
-    """
-    HTTP 403 - Forbidden: your credentials don't give you access to this
-    resource.
-    """
+    """HTTP 403 - Forbidden: credentials don't give access to this resource."""
     http_status = 403
     message = "Forbidden"
 
 
 class HTTPNotFound(ClientException):
-    """
-    HTTP 404 - Not found
-    """
+    """HTTP 404 - Not found """
     http_status = 404
     message = "Not found"
 
 
 class HTTPMethodNotAllowed(ClientException):
-    """
-    HTTP 405 - Method not Allowed
-    """
+    """HTTP 405 - Method not Allowed """
     http_status = 405
     message = "Method Not Allowed"
 
 
 class HTTPNotAcceptable(ClientException):
-    """
-    HTTP 406 - Method not Acceptable
-    """
+    """HTTP 406 - Method not Acceptable """
     http_status = 406
     message = "Method Not Acceptable"
 
 
 class HTTPProxyAuthRequired(ClientException):
-    """
-    HTTP 407 - The client must first authenticate itself with the proxy.
-    """
+    """HTTP 407 - The client must first authenticate itself with the proxy."""
     http_status = 407
     message = "Proxy Authentication Required"
 
 
 class HTTPRequestTimeout(ClientException):
-    """
-    HTTP 408 - The server timed out waiting for the request.
-    """
+    """HTTP 408 - The server timed out waiting for the request."""
     http_status = 408
     message = "Request Timeout"
 
 
 class HTTPConflict(ClientException):
-    """
-    HTTP 409 - Conflict: A Conflict happened on the server
-    """
+    """HTTP 409 - Conflict: A Conflict happened on the server."""
     http_status = 409
     message = "Conflict"
 
 
 class HTTPGone(ClientException):
-    """
-    HTTP 410 - Indicates that the resource requested is no longer available and
-               will not be available again.
+    """HTTP 410
+
+    Indicates that the resource requested is no longer available and
+    will not be available again.
     """
     http_status = 410
     message = "Gone"
 
 
 class HTTPLengthRequired(ClientException):
-    """
-    HTTP 411 - The request did not specify the length of its content, which is
+    """HTTP 411
+
+    The request did not specify the length of its content, which is
                required by the requested resource.
+
     """
     http_status = 411
     message = "Length Required"
 
 
 class HTTPPreconditionFailed(ClientException):
-    """
-    HTTP 412 - The server does not meet one of the preconditions that the
+    """HTTP 412
+
+    The server does not meet one of the preconditions that the
                requester put on the request.
     """
     http_status = 412
@@ -273,53 +241,54 @@ class HTTPPreconditionFailed(ClientException):
 
 
 class HTTPRequestEntityTooLarge(ClientException):
-    """
-    HTTP 413 - The request is larger than the server is willing or able to
-               process
+    """HTTP 413
+
+    The request is larger than the server is willing or able to process
     """
     http_status = 413
     message = "Request Entity Too Large"
 
 
 class HTTPRequestURITooLong(ClientException):
-    """
-    HTTP 414 - The URI provided was too long for the server to process.
-    """
+    """HTTP 414 - The URI provided was too long for the server to process."""
     http_status = 414
     message = "Request URI Too Large"
 
 
 class HTTPUnsupportedMediaType(ClientException):
+    """HTTP 415
+
+    The request entity has a media type which the server or resource
+    does not support.
     """
-    HTTP 415 - The request entity has a media type which the server or resource
-               does not support.
-    """
+
     http_status = 415
     message = "Unsupported Media Type"
 
 
 class HTTPRequestedRangeNotSatisfiable(ClientException):
-    """
-    HTTP 416 - The client has asked for a portion of the file, but the server
-               cannot supply that portion.
+    """HTTP 416
+
+    The client has asked for a portion of the file, but the server cannot
+    supply that portion.
     """
     http_status = 416
     message = "Requested Range Not Satisfiable"
 
 
 class HTTPExpectationFailed(ClientException):
+    """HTTP 417
+
+    The server cannot meet the requirements of the Expect
+    request-header field.
     """
-    HTTP 417 - The server cannot meet the requirements of the Expect
-               request-header field.
-    """
+
     http_status = 417
     message = "Expectation Failed"
 
 
 class HTTPTeaPot(ClientException):
-    """
-    HTTP 418 - I'm a Tea Pot
-    """
+    """HTTP 418 - I'm a Tea Pot."""
     http_status = 418
     message = "I'm A Teapot. (RFC 2324)"
 
@@ -328,51 +297,47 @@ class HTTPTeaPot(ClientException):
 
 
 class HTTPInternalServerError(ClientException):
-    """
-    HTTP 500 - Internal Server Error: an internal error occured.
-    """
+    """HTTP 500 - Internal Server Error: an internal error occured."""
     http_status = 500
     message = "Internal Server Error"
 
 
 class HTTPNotImplemented(ClientException):
-    """
-    HTTP 501 - Not Implemented: the server does not support this operation.
-    """
+    """HTTP 501 - Not Implemented: server does not support the operation."""
     http_status = 501
     message = "Not Implemented"
 
 
 class HTTPBadGateway(ClientException):
-    """
-    HTTP 502 - The server was acting as a gateway or proxy and received an
-               invalid response from the upstream server.
+    """HTTP 502
+
+    The server was acting as a gateway or proxy and received an
+    invalid response from the upstream server.
     """
     http_status = 502
     message = "Bad Gateway"
 
 
 class HTTPServiceUnavailable(ClientException):
-    """
-    HTTP 503 - The server is currently unavailable
-    """
+    """HTTP 503 - The server is currently unavailable."""
     http_status = 503
     message = "Service Unavailable"
 
 
 class HTTPGatewayTimeout(ClientException):
-    """
-    HTTP 504 - The server was acting as a gateway or proxy and did
-               not receive a timely response from the upstream server.
+    """HTTP 504
+
+    The server was acting as a gateway or proxy and did
+    not receive a timely response from the upstream server.
     """
     http_status = 504
     message = "Gateway Timeout"
 
 
 class HTTPVersionNotSupported(ClientException):
-    """
-    HTTP 505 - The server does not support the HTTP protocol version used
-               in the request.
+    """HTTP 505
+
+    The server does not support the HTTP protocol version used in the request.
     """
     http_status = 505
     message = "Version Not Supported"
@@ -399,8 +364,8 @@ _code_map = dict((c.http_status, c) for c in
 
 
 def from_response(response, body):
-    """
-    Return an instance of an ClientException or subclass
+    """Return an instance of an ClientException or subclass.
+
     based on a Python Requests response.
 
     Usage::
