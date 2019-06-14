@@ -32,6 +32,18 @@ Overview
 This python package is a client that talks to the ceph-iscsi rbd-target-api.
 rbd-target-api coordinates the rbd volume exports via iSCSI
 
+Requirements
+------------
+This package requires a running ceph cluster that has the ceph-iscsi
+gateway tools installed properly and running.  The rbd-target-api must
+be configured and running
+
+Installation
+------------
+```
+pip install rbd-iscsi-client
+```
+
 Features
 --------
 
