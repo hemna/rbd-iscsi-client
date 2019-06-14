@@ -111,7 +111,7 @@ Tips
 To run a subset of tests::
 
 
-    $ python -m unittest tests.test_rbd_iscsi_client
+    $ tox -epy37 tests.test_rbd_iscsi_client
 
 Deploying
 ---------

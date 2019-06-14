@@ -3,18 +3,18 @@ RBD iSCSI Client
 ================
 
 
-.. image:: https://img.shields.io/pypi/v/rbd_iscsi_client.svg
-        :target: https://pypi.python.org/pypi/rbd_iscsi_client
+.. image:: https://img.shields.io/pypi/v/rbd-iscsi-client.svg
+        :target: https://pypi.python.org/pypi/rbd-iscsi-client
 
-.. image:: https://img.shields.io/travis/hemna/rbd_iscsi_client.svg
-        :target: https://travis-ci.org/hemna/rbd_iscsi_client
+.. image:: https://img.shields.io/travis/hemna/rbd-iscsi-client.svg
+        :target: https://travis-ci.com/hemna/rbd-iscsi-client
 
 .. image:: https://readthedocs.org/projects/rbd-iscsi-client/badge/?version=latest
         :target: https://rbd-iscsi-client.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/hemna/rbd_iscsi_client/shield.svg
-     :target: https://pyup.io/repos/github/hemna/rbd_iscsi_client/
+.. image:: https://pyup.io/repos/github/hemna/rbd-iscsi-client/shield.svg
+     :target: https://pyup.io/repos/github/hemna/rbd-iscsi-client/
      :alt: Updates
 
 

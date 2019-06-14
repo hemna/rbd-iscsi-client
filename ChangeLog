@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+v0.1.1
+------
+
+* Update setting version from pbr
+
+v0.1.0
+------
+
+* Update some documentation
 * remove manifest
 * Fix pep8
 * renamed rbd\_iscsi\_client to client
