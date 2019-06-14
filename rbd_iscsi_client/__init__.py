@@ -10,6 +10,16 @@
 #    License for the specific language governing permissions and limitations
 #    under the License."""Top-level package for RBD iSCSI Client."""
 
+import pbr.version
+
+__all_ = ['__version__']
+
 __author__ = """Walter A. Boring IV"""
 __email__ = 'waboring@hemna.com'
-__version__ = '0.1.0'
+
+version_info = pbr.version.VersionInfo('rbd-iscsi-client')
+
+try:
+    __version__ = version_info.version_string()
+except AttributeError:
+    __version__ = None
