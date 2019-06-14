@@ -40,9 +40,7 @@ be configured and running
 
 Installation
 ------------
-```
-pip install rbd-iscsi-client
-```
+``pip install rbd-iscsi-client``
 
 Features
 --------
@@ -71,6 +69,8 @@ rbd images/volumes to an iSCSI initiator.
 
 Credits
 -------
+
+This package makes use of the rbd-target-api from ceph-iscsi_ package.
 
 .. _ceph-iscsi: https://github.com/ceph/ceph-iscsi
 
