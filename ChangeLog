@@ -1,29 +1,14 @@
 CHANGES
 =======
 
-v0.1.4
-------
-
+* more
+* more readthedocs.yml
+* try and fix readthedocs.yml
+* Added .readthedocs.yml
 * Fixed more README issues
-
-v0.1.3
-------
-
 * Updated README for requirements and install
-
-v0.1.2
-------
-
 * Release cleanup
-
-v0.1.1
-------
-
 * Update setting version from pbr
-
-v0.1.0
-------
-
 * Update some documentation
 * remove manifest
 * Fix pep8

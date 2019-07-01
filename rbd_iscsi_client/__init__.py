@@ -20,6 +20,6 @@ __email__ = 'waboring@hemna.com'
 version_info = pbr.version.VersionInfo('rbd-iscsi-client')
 
 try:
-    __version__ = version_info.version_string()
+    version = version_info.version_string()
 except AttributeError:
-    __version__ = None
+    version = None
