@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* Update to work with py38
+* Rename \_\_version\_\_ to version
 * more
 * more readthedocs.yml
 * try and fix readthedocs.yml
