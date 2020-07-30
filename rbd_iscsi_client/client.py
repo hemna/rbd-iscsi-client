@@ -21,10 +21,11 @@ host.
 
 import json
 import logging
-import requests
 import time
 
 from rbd_iscsi_client import exceptions
+
+import requests
 
 
 class RBDISCSIClient(object):
@@ -193,7 +194,7 @@ class RBDISCSIClient(object):
                 self.delay = self.delay * self.backoff + 1
 
                 # Raise exception, we have exhausted all retries.
-                if self.tries is 0:
+                if self.tries == 0:
                     raise ex
             except requests.exceptions.HTTPError as err:
                 raise exceptions.HTTPError("HTTP Error: %s" % err)
@@ -241,6 +242,18 @@ class RBDISCSIClient(object):
         """Get the complete config object."""
         return self.get("/api/config")
 
+    def get_sys_info(self, type):
+        """Get system info of <type>.
+
+        Valid types are:
+            ip_address
+            checkconf
+            checkversions
+        """
+
+        api = "/api/sysinfo/%(type)s" % {'type': type}
+        return self.get(api)
+
     def get_gatewayinfo(self):
         """Get the number of active sessions on local gateway."""
         return self.get("/api/gatewayinfo")
@@ -248,6 +261,11 @@ class RBDISCSIClient(object):
     def get_targets(self):
         """Get the list of targets defined in the config."""
         api = "/api/targets"
+        return self.get(api)
+
+    def get_target_info(self, target_iqn):
+        """Returns the total number of active sessions for <target_iqn>"""
+        api = "/api/targetinfo/%(target_iqn)s" % {'target_iqn': target_iqn}
         return self.get(api)
 
     def create_target_iqn(self, target_iqn, mode=None, controls=None):

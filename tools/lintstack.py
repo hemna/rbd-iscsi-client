@@ -24,6 +24,7 @@ import sys
 
 from pylint import lint
 from pylint.reporters import text
+
 from six.moves import cStringIO as StringIO
 
 ignore_codes = [

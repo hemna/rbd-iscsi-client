@@ -11,8 +11,8 @@
 # under the License.
 """Tests for `rbd_iscsi_client` package."""
 
-import mock
 import unittest
+from unittest import mock
 
 from rbd_iscsi_client import client
 

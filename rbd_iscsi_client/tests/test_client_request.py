@@ -11,12 +11,13 @@
 # under the License.
 """Tests for `rbd_iscsi_client` package."""
 
-import mock
-import requests
 import unittest
+from unittest import mock
 
 from rbd_iscsi_client import client
 from rbd_iscsi_client import exceptions
+
+import requests
 
 
 class TestRbd_iscsi_client(unittest.TestCase):
