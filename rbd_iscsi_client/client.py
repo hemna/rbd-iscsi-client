@@ -349,12 +349,28 @@ class RBDISCSIClient(object):
                 'image': image})
         return self.get(url)
 
-    def delete_disk(self, pool, image):
-        """delete a disk from the gateway."""
+    def delete_disk(self, pool, image, preserve_image=True):
+        """Delete a disk definition from the gateway.
+
+           By default it will not delete the rbd image from the pool.
+           If preserve_image is set to True, then this only tells the
+           gateway to forget about this volume.   This is typically done
+           when the volume isn't used as an export anymore.
+        """
         url = ("/api/disk/%(pool)s/%(image)s" %
                {'pool': pool,
                 'image': image})
-        return self.delete(url)
+
+        if preserve_image is True:
+            preserve = 'true'
+        else:
+            preserve = 'false'
+
+        payload = {
+            'preserve_image': preserve
+        }
+
+        return self.delete(url, data=payload)
 
     def register_disk(self, target_iqn, volume):
         """Add the volume to the target definition.
