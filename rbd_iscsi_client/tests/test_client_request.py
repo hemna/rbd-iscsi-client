@@ -118,7 +118,7 @@ class TestRbd_iscsi_client(unittest.TestCase):
         with mock.patch('requests.request', retest, create=True):
             # Test requests exception
             retest.side_effect = requests.exceptions.SSLError
-            self.assertRaisesRegexp(exceptions.SSLCertFailed, "failed")
+            self.assertRaisesRegex(exceptions.SSLCertFailed, "failed")
 
     def test_client_timeout_setting(self):
         self.client._http_log_req = mock.Mock()
